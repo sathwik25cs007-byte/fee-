@@ -195,10 +195,25 @@ function getStudents() {
   });
 }
 
+// ── Password (set ADMIN_PASSWORD env var on Render to change) ────────────────
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'gp2025';
+
+function requireAuth(req, res, next) {
+  const token = req.headers['x-auth-token'];
+  if (token === ADMIN_PASSWORD) return next();
+  res.status(401).json({ error: 'Unauthorized' });
+}
+
 // ── API ───────────────────────────────────────────────────────────────────────
+app.post('/api/login', (req, res) => {
+  const { password } = req.body;
+  if (password === ADMIN_PASSWORD) return res.json({ ok: true, token: ADMIN_PASSWORD });
+  res.status(401).json({ error: 'Wrong password' });
+});
+
 app.get('/api/students', (req, res) => res.json(getStudents()));
 
-app.patch('/api/students/:pin', (req, res) => {
+app.patch('/api/students/:pin', requireAuth, (req, res) => {
   const { pin } = req.params;
   const master = STUDENTS_MASTER.find(r => r[1] === pin);
   if (!master) return res.status(404).json({ error: 'Student not found' });
