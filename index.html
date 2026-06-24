@@ -5,134 +5,130 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fee Payment Checklist – GP Wanaparthy</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: 100vh; padding: 20px; color: #333;
-}
-.wrap {
-  padding: 2rem; max-width: 1100px; margin: 0 auto;
-  background: white; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-}
-.header-section { margin-bottom: 2rem; border-bottom: 2px solid #e8eef5; padding-bottom: 1.5rem; }
-.header-section h1 { font-size: 26px; font-weight: 700; color: #1a237e; margin-bottom: 4px; }
-.header-section p { font-size: 14px; color: #666; margin: 2px 0; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);min-height:100vh;padding:20px;color:#333}
 
-.sync-bar {
-  display: flex; align-items: center; gap: 8px; font-size: 13px; color: #666;
-  margin-bottom: 1rem; padding: 10px 12px; background: #f8f9fa; border-radius: 8px;
-}
-.sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; flex-shrink: 0; animation: pulse 2s infinite; }
-.sync-dot.live { background: #28a745; animation: none; }
-.sync-dot.busy { background: #ff9800; animation: pulse 1s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+/* ── Main App ── */
+.wrap{padding:2rem;max-width:1100px;margin:0 auto;background:white;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.1)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.header-section{margin-bottom:2rem;border-bottom:2px solid #e8eef5;padding-bottom:1.5rem}
+.header-section h1{font-size:26px;font-weight:700;color:#1a237e;margin-bottom:4px}
+.header-section p{font-size:14px;color:#666;margin:2px 0}
 
-.error-banner {
-  background: #fee; color: #c33; border-radius: 8px; padding: 12px 16px;
-  font-size: 13px; margin-bottom: 1rem; display: none; border-left: 4px solid #c33;
-}
+.sync-bar{display:flex;align-items:center;gap:8px;font-size:13px;color:#666;margin-bottom:1rem;padding:10px 12px;background:#f8f9fa;border-radius:8px}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0;animation:pulse 2s infinite}
+.sync-dot.live{background:#28a745;animation:none}
+.sync-dot.busy{background:#ff9800;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.error-banner{background:#fee;color:#c33;border-radius:8px;padding:12px 16px;font-size:13px;margin-bottom:1rem;display:none;border-left:4px solid #c33}
 
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
-.stat { color: white; border-radius: 10px; padding: 16px; text-align: center; }
-.stat:nth-child(1) { background: linear-gradient(135deg,#667eea,#764ba2); box-shadow: 0 4px 12px rgba(102,126,234,0.3); }
-.stat:nth-child(2) { background: linear-gradient(135deg,#11998e,#38ef7d); box-shadow: 0 4px 12px rgba(17,153,142,0.3); }
-.stat:nth-child(3) { background: linear-gradient(135deg,#ff6b6b,#ee5a6f); box-shadow: 0 4px 12px rgba(255,107,107,0.3); }
-.stat:nth-child(4) { background: linear-gradient(135deg,#f093fb,#f5576c); box-shadow: 0 4px 12px rgba(245,87,108,0.3); }
-.stat-label { font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-.stat-val { font-size: 28px; font-weight: 700; }
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem}
+.stat{color:white;border-radius:10px;padding:16px;text-align:center}
+.stat:nth-child(1){background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:0 4px 12px rgba(102,126,234,0.3)}
+.stat:nth-child(2){background:linear-gradient(135deg,#11998e,#38ef7d);box-shadow:0 4px 12px rgba(17,153,142,0.3)}
+.stat:nth-child(3){background:linear-gradient(135deg,#ff6b6b,#ee5a6f);box-shadow:0 4px 12px rgba(255,107,107,0.3)}
+.stat:nth-child(4){background:linear-gradient(135deg,#f093fb,#f5576c);box-shadow:0 4px 12px rgba(245,87,108,0.3)}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.stat-val{font-size:28px;font-weight:700}
 
-.toolbar {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem;
-  flex-wrap: wrap; padding: 12px; background: #f8f9fa; border-radius: 10px;
-}
-.toolbar input[type=text] {
-  flex: 1; min-width: 200px; padding: 10px 14px; border: 1.5px solid #e0e0e0;
-  border-radius: 8px; font-size: 14px; transition: all 0.3s;
-}
-.toolbar input[type=text]:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
-.filter-btn {
-  font-size: 13px; padding: 8px 14px; border-radius: 8px; border: 1.5px solid #e0e0e0;
-  background: white; color: #666; cursor: pointer; font-weight: 500; transition: all 0.3s;
-}
-.filter-btn:hover { border-color: #667eea; background: #f8f9ff; }
-.filter-btn.active { background: #667eea; color: white; border-color: #667eea; }
-.tool-btn {
-  font-size: 13px; padding: 8px 14px; border-radius: 8px; border: 1.5px solid #e0e0e0;
-  background: white; color: #333; cursor: pointer; font-weight: 500; transition: all 0.3s; display: flex; align-items: center; gap: 6px;
-}
-.tool-btn:hover { background: #f8f9fa; border-color: #667eea; color: #667eea; }
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap;padding:12px;background:#f8f9fa;border-radius:10px}
+.toolbar input[type=text]{flex:1;min-width:200px;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;transition:all 0.3s}
+.toolbar input[type=text]:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1)}
+.filter-btn{font-size:13px;padding:8px 14px;border-radius:8px;border:1.5px solid #e0e0e0;background:white;color:#666;cursor:pointer;font-weight:500;transition:all 0.3s}
+.filter-btn:hover{border-color:#667eea;background:#f8f9ff}
+.filter-btn.active{background:#667eea;color:white;border-color:#667eea}
+.tool-btn{font-size:13px;padding:8px 14px;border-radius:8px;border:1.5px solid #e0e0e0;background:white;color:#333;cursor:pointer;font-weight:500;transition:all 0.3s;display:flex;align-items:center;gap:6px}
+.tool-btn:hover{background:#f8f9fa;border-color:#667eea;color:#667eea}
 
-.tscroll { max-height: 520px; overflow-y: auto; border: 1.5px solid #e0e0e0; border-radius: 10px; }
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-thead th {
-  text-align: left; padding: 14px 12px; font-size: 13px; font-weight: 600; color: #333;
-  border-bottom: 2px solid #e0e0e0; position: sticky; top: 0; background: #f8f9fa; z-index: 1;
-}
-td { padding: 12px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
-tbody tr:hover td { background: #f8f9fa; }
-.pin { font-family: 'Courier New', monospace; font-size: 12px; color: #666; }
-.badge { display: inline-block; font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
-.badge.paid { background: #d4edda; color: #155724; }
-.badge.unpaid { background: #f8d7da; color: #721c24; }
-.mark-btn {
-  font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1.5px solid #e0e0e0;
-  cursor: pointer; background: white; color: #667eea; font-weight: 500; transition: all 0.3s;
-}
-.mark-btn:hover { background: #667eea; color: white; border-color: #667eea; }
-.edit-btn {
-  font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1.5px solid #e0e0e0;
-  cursor: pointer; background: white; color: #666; font-weight: 500; transition: all 0.3s;
-}
-.edit-btn:hover { border-color: #667eea; color: #667eea; }
-.edit-btn.del:hover { color: #dc3545; border-color: #dc3545; }
+.tscroll{max-height:520px;overflow-y:auto;border:1.5px solid #e0e0e0;border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{text-align:left;padding:14px 12px;font-size:13px;font-weight:600;color:#333;border-bottom:2px solid #e0e0e0;position:sticky;top:0;background:#f8f9fa;z-index:1}
+td{padding:12px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+tbody tr:hover td{background:#f8f9fa}
+.pin{font-family:'Courier New',monospace;font-size:12px;color:#666}
+.badge{display:inline-block;font-size:12px;padding:4px 10px;border-radius:20px;font-weight:600}
+.badge.paid{background:#d4edda;color:#155724}
+.badge.unpaid{background:#f8d7da;color:#721c24}
+.mark-btn{font-size:12px;padding:6px 10px;border-radius:6px;border:1.5px solid #e0e0e0;cursor:pointer;background:white;color:#667eea;font-weight:500;transition:all 0.3s}
+.mark-btn:hover{background:#667eea;color:white;border-color:#667eea}
+.edit-btn{font-size:12px;padding:6px 10px;border-radius:6px;border:1.5px solid #e0e0e0;cursor:pointer;background:white;color:#666;font-weight:500;transition:all 0.3s}
+.edit-btn:hover{border-color:#667eea;color:#667eea}
+.edit-btn.del:hover{color:#dc3545;border-color:#dc3545}
+.tscroll::-webkit-scrollbar{width:8px}
+.tscroll::-webkit-scrollbar-track{background:#f1f1f1;border-radius:10px}
+.tscroll::-webkit-scrollbar-thumb{background:#bbb;border-radius:10px}
 
-.tscroll::-webkit-scrollbar { width: 8px; }
-.tscroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-.tscroll::-webkit-scrollbar-thumb { background: #bbb; border-radius: 10px; }
+/* ── Modal ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal{background:white;border-radius:12px;border:1.5px solid #e0e0e0;padding:1.5rem;width:380px;max-width:95vw;box-shadow:0 12px 40px rgba(0,0,0,0.15)}
+.modal h3{font-size:16px;font-weight:600;margin-bottom:1.25rem;color:#1a237e}
+.field{margin-bottom:1rem}
+.field label{font-size:13px;color:#666;display:block;margin-bottom:6px;font-weight:500}
+.field input,.field select{width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:14px;transition:all 0.3s}
+.field input:focus,.field select:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1)}
+.cb-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
+.cb-wrap input[type=checkbox]{width:18px;height:18px;accent-color:#667eea;cursor:pointer}
+.modal-actions{display:flex;gap:10px;margin-top:1.5rem;justify-content:flex-end}
+.modal-actions button{padding:8px 16px;font-size:13px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.3s}
+.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;box-shadow:0 4px 12px rgba(102,126,234,0.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(102,126,234,0.4)}
+.btn-primary:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.btn-cancel{background:#f8f9fa;color:#666;border:1.5px solid #e0e0e0}
+.btn-cancel:hover{background:#e8eef5;border-color:#667eea}
 
-/* Modal */
-.modal-bg {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
-  display: flex; align-items: center; justify-content: center; z-index: 100;
-}
-.modal {
-  background: white; border-radius: 12px; border: 1.5px solid #e0e0e0;
-  padding: 1.5rem; width: 380px; max-width: 95vw; box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-}
-.modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 1.25rem; color: #1a237e; }
-.field { margin-bottom: 1rem; }
-.field label { font-size: 13px; color: #666; display: block; margin-bottom: 6px; font-weight: 500; }
-.field input, .field select {
-  width: 100%; padding: 10px 12px; border: 1.5px solid #e0e0e0;
-  border-radius: 8px; font-size: 14px; transition: all 0.3s;
-}
-.field input:focus, .field select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
-.cb-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.cb-wrap input[type=checkbox] { width: 18px; height: 18px; accent-color: #667eea; cursor: pointer; }
-.modal-actions { display: flex; gap: 10px; margin-top: 1.5rem; justify-content: flex-end; }
-.modal-actions button { padding: 8px 16px; font-size: 13px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-.btn-primary {
-  background: linear-gradient(135deg,#667eea,#764ba2); color: white; border: none;
-  box-shadow: 0 4px 12px rgba(102,126,234,0.3);
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(102,126,234,0.4); }
-.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-.btn-cancel { background: #f8f9fa; color: #666; border: 1.5px solid #e0e0e0; }
-.btn-cancel:hover { background: #e8eef5; border-color: #667eea; }
+/* ── Login Screen ── */
+.login-screen{display:flex;align-items:center;justify-content:center;position:fixed;inset:0;background:linear-gradient(135deg,#1a237e 0%,#283593 100%);z-index:200}
+.login-box{background:white;border-radius:16px;padding:2.5rem 2rem;width:340px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center}
+.login-logo{font-size:44px;margin-bottom:1rem}
+.login-box h2{font-size:20px;font-weight:700;color:#1a237e;margin-bottom:4px}
+.login-box p{font-size:13px;color:#999;margin-bottom:1.5rem}
+.login-box input{width:100%;padding:12px 16px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:16px;text-align:center;letter-spacing:4px;margin-bottom:1rem;transition:all 0.3s}
+.login-box input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.15)}
+.login-btn{width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 12px rgba(102,126,234,0.4)}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(102,126,234,0.5)}
+.login-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.login-error{color:#e53935;font-size:13px;margin-top:10px;min-height:18px}
+.view-only-link{background:none;border:none;color:#aaa;font-size:12px;cursor:pointer;text-decoration:underline;margin-top:12px;display:block}
+.admin-badge{font-size:12px;background:#d4edda;color:#155724;border:1px solid #c3e6cb;border-radius:6px;padding:3px 8px;font-weight:600}
+.viewonly-badge{font-size:12px;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:6px;padding:3px 8px;font-weight:600}
+.logout-btn{font-size:12px;padding:6px 14px;border-radius:8px;border:1.5px solid #e0e0e0;background:white;color:#666;cursor:pointer;transition:all 0.3s;font-weight:500}
+.logout-btn:hover{border-color:#e53935;color:#e53935}
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<!-- ── Login Screen ── -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🏫</div>
+    <h2>GP Wanaparthy</h2>
+    <p>Fee Payment Checklist · CS Batch 2025</p>
+    <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" id="login-btn" onclick="doLogin()">Login to Edit</button>
+    <div class="login-error" id="login-error"></div>
+    <button class="view-only-link" onclick="viewOnly()">View only (no password)</button>
+  </div>
+</div>
+
+<!-- ── Main App ── -->
+<div class="wrap" id="main-app" style="display:none">
   <div class="header-section">
-    <h1>Government Polytechnic, Wanaparthy</h1>
-    <p>Fee Payment Checklist</p>
-    <p style="font-size:12px;color:#999;margin-top:6px;">English · CS Batch 2025</p>
+    <div class="header-top">
+      <div>
+        <h1>Government Polytechnic, Wanaparthy</h1>
+        <p>Fee Payment Checklist</p>
+        <p style="font-size:12px;color:#999;margin-top:6px">English · CS Batch 2025</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;padding-top:4px">
+        <span id="auth-badge"></span>
+        <button class="logout-btn" onclick="doLogout()">🔒 Logout</button>
+      </div>
+    </div>
   </div>
 
   <div class="sync-bar">
     <span class="sync-dot" id="sync-dot"></span>
-    <span id="sync-text">Connecting to server…</span>
+    <span id="sync-text">Connecting…</span>
   </div>
   <div class="error-banner" id="error-banner"></div>
 
@@ -155,8 +151,8 @@ tbody tr:hover td { background: #f8f9fa; }
   <div class="tscroll">
     <table>
       <colgroup>
-        <col style="width:48px"><col style="width:120px"><col><col style="width:90px">
-        <col style="width:180px"><col style="width:130px">
+        <col style="width:48px"><col style="width:120px"><col>
+        <col style="width:90px"><col style="width:180px"><col style="width:130px">
       </colgroup>
       <thead>
         <tr><th>#</th><th>PIN</th><th>Name</th><th>Status</th><th>Payment Details</th><th>Actions</th></tr>
@@ -166,21 +162,21 @@ tbody tr:hover td { background: #f8f9fa; }
   </div>
 </div>
 
-<!-- Modal -->
-<div id="modal" style="display:none;">
+<!-- ── Edit Modal ── -->
+<div id="modal" style="display:none">
   <div class="modal-bg" onclick="closeModal(event)">
     <div class="modal" onclick="event.stopPropagation()">
       <h3 id="modal-title">Record Payment</h3>
-      <div class="field"><label>Amount (₹)</label><input type="number" id="f-amount" placeholder="e.g. 500" min="0"></div>
+      <div class="field"><label>Amount (₹)</label><input type="number" id="f-amount" placeholder="e.g. 300" min="0"></div>
       <div class="field"><label>Date</label><input type="date" id="f-date"></div>
       <div class="field"><label>Time</label><input type="time" id="f-time"></div>
       <div class="field"><label>Method</label>
         <select id="f-method"><option value="UPI">UPI</option><option value="Cash">Cash</option></select>
       </div>
-      <div class="field" style="margin-top:14px;">
+      <div class="field" style="margin-top:14px">
         <label class="cb-wrap">
           <input type="checkbox" id="f-checkbox">
-          <span style="font-weight:500;color:#333;">Mark as completed</span>
+          <span style="font-weight:500;color:#333">Mark as completed</span>
         </label>
       </div>
       <div class="modal-actions">
@@ -194,50 +190,99 @@ tbody tr:hover td { background: #f8f9fa; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <script>
-let students = [];
-let filter = 'all';
-let editPin = null;
+let authToken = null;
 
-function setSyncStatus(status, msg) {
-  const dot = document.getElementById('sync-dot');
-  const text = document.getElementById('sync-text');
-  dot.classList.remove('live', 'busy');
-  if (status === 'live') { dot.classList.add('live'); text.textContent = msg || 'All changes saved'; }
-  else if (status === 'busy') { dot.classList.add('busy'); text.textContent = msg || 'Saving…'; }
-  else { text.textContent = msg || 'Connection error'; }
+// ── Auth ──────────────────────────────────────────────────────────────────────
+async function doLogin() {
+  const pw  = document.getElementById('pw-input').value.trim();
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('login-error');
+  if (!pw) { err.textContent = 'Please enter the password.'; return; }
+  btn.disabled = true; btn.textContent = 'Checking…'; err.textContent = '';
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ password: pw })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Wrong password');
+    authToken = data.token;
+    enterApp(true);
+  } catch(e) {
+    err.textContent = '❌ ' + e.message;
+    btn.disabled = false; btn.textContent = 'Login to Edit';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
 }
 
+function viewOnly() {
+  authToken = null;
+  enterApp(false);
+}
+
+function enterApp(isAdmin) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = 'block';
+  document.getElementById('auth-badge').innerHTML = isAdmin
+    ? '<span class="admin-badge">✏️ Admin</span>'
+    : '<span class="viewonly-badge">👁 View Only</span>';
+  loadStudents();
+}
+
+function doLogout() {
+  authToken = null;
+  students = [];
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pw-input').value = '';
+  document.getElementById('login-error').textContent = '';
+}
+
+let students = [];
+let filter   = 'all';
+let editPin  = null;
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+function setSyncStatus(status, msg) {
+  const dot = document.getElementById('sync-dot');
+  const txt = document.getElementById('sync-text');
+  dot.classList.remove('live','busy');
+  if (status === 'live')  { dot.classList.add('live');  txt.textContent = msg || 'All changes saved'; }
+  else if (status==='busy'){ dot.classList.add('busy'); txt.textContent = msg || 'Saving…'; }
+  else { txt.textContent = msg || 'Connection error'; }
+}
 function showError(msg) {
   const b = document.getElementById('error-banner');
   if (msg) { b.textContent = msg; b.style.display = 'block'; }
-  else { b.style.display = 'none'; }
+  else b.style.display = 'none';
 }
 
 async function loadStudents() {
-  setSyncStatus('busy', 'Loading from server…');
+  setSyncStatus('busy','Loading from server…');
   try {
     const res = await fetch('/api/students');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     students = await res.json();
-    renderTable();
-    loadStats();
-    setSyncStatus('live', 'Loaded from server');
+    renderTable(); loadStats();
+    setSyncStatus('live','Loaded from server');
     showError('');
   } catch (e) {
-    setSyncStatus('error', 'Could not reach server');
-    showError('Failed to load. Make sure the server is running. ' + e.message);
+    setSyncStatus('error','Could not reach server');
+    showError('Failed to load. ' + e.message);
   }
 }
 
 async function loadStats() {
   try {
     const res = await fetch('/api/stats');
-    const s = await res.json();
-    document.getElementById('s-total').textContent = s.total;
-    document.getElementById('s-paid').textContent = s.paid;
+    const s   = await res.json();
+    document.getElementById('s-total').textContent  = s.total;
+    document.getElementById('s-paid').textContent   = s.paid;
     document.getElementById('s-unpaid').textContent = s.unpaid;
     document.getElementById('s-amount').textContent = '₹' + Number(s.totalAmount).toLocaleString('en-IN');
-  } catch (e) {}
+  } catch(e){}
 }
 
 function setFilter(f, btn) {
@@ -251,40 +296,42 @@ function visible() {
   const q = document.getElementById('search').value.toLowerCase();
   return students.filter(s => {
     const mq = !q || s.name.toLowerCase().includes(q) || s.pin.toLowerCase().includes(q);
-    const mf = filter === 'all' || (filter === 'paid' && s.paid) || (filter === 'unpaid' && !s.paid);
+    const mf = filter==='all' || (filter==='paid'&&s.paid) || (filter==='unpaid'&&!s.paid);
     return mq && mf;
   });
 }
 
 function renderTable() {
-  const list = visible();
-  document.getElementById('tbody').innerHTML = list.map(s => {
+  document.getElementById('tbody').innerHTML = visible().map(s => {
     const detail = s.paid
-      ? `<span style="font-size:12px;">₹${s.amount} · ${s.method}<br><span style="color:#999">${s.date} ${s.time}</span></span>`
-      : `<span style="color:#ccc;font-size:12px;">—</span>`;
+      ? `<span style="font-size:12px">₹${s.amount} · ${s.method}<br><span style="color:#999">${s.date} ${s.time}</span></span>`
+      : `<span style="color:#ccc;font-size:12px">—</span>`;
+    const actions = !authToken
+      ? `<span style="font-size:11px;color:#bbb">View only</span>`
+      : !s.paid
+        ? `<button class="mark-btn" onclick="openModal('${s.pin}')">Mark Paid</button>`
+        : `<button class="edit-btn" onclick="openModal('${s.pin}')">✏️ Edit</button>
+           <button class="edit-btn del" onclick="unpay('${s.pin}')" title="Clear">✕</button>`;
     return `<tr>
-      <td style="color:#999;font-size:12px;">${s.sno}</td>
+      <td style="color:#999;font-size:12px">${s.sno}</td>
       <td class="pin">${s.pin}</td>
-      <td style="font-weight:500;">${s.name}</td>
+      <td style="font-weight:500">${s.name}</td>
       <td><span class="badge ${s.paid?'paid':'unpaid'}">${s.paid?'Paid':'Pending'}</span></td>
       <td>${detail}</td>
-      <td style="display:flex;gap:4px;flex-wrap:wrap;">
-        ${!s.paid ? `<button class="mark-btn" onclick="openModal('${s.pin}')">Mark Paid</button>` : ''}
-        ${s.paid  ? `<button class="edit-btn" onclick="openModal('${s.pin}')">✏️ Edit</button>` : ''}
-        ${s.paid  ? `<button class="edit-btn del" onclick="unpay('${s.pin}')" title="Clear payment">✕</button>` : ''}
-      </td>
+      <td style="display:flex;gap:4px;flex-wrap:wrap">${actions}</td>
     </tr>`;
   }).join('');
 }
 
 function openModal(pin) {
+  if (!authToken) return;
   editPin = pin;
   const s = students.find(x => x.pin === pin);
   document.getElementById('modal-title').textContent = s.name;
-  document.getElementById('f-amount').value = s.amount || '';
-  document.getElementById('f-date').value = s.date || new Date().toISOString().slice(0,10);
-  document.getElementById('f-time').value = s.time || new Date().toTimeString().slice(0,5);
-  document.getElementById('f-method').value = s.method || 'UPI';
+  document.getElementById('f-amount').value  = s.amount || '';
+  document.getElementById('f-date').value    = s.date   || new Date().toISOString().slice(0,10);
+  document.getElementById('f-time').value    = s.time   || new Date().toTimeString().slice(0,5);
+  document.getElementById('f-method').value  = s.method || 'UPI';
   document.getElementById('f-checkbox').checked = s.paid || false;
   const btn = document.getElementById('save-btn');
   btn.disabled = false; btn.textContent = 'Save Payment';
@@ -303,16 +350,16 @@ async function savePayment() {
   btn.disabled = true; btn.textContent = 'Saving…';
   setSyncStatus('busy');
   const payload = {
-    paid: document.getElementById('f-checkbox').checked || true,
+    paid:   document.getElementById('f-checkbox').checked || true,
     amount: document.getElementById('f-amount').value,
-    date: document.getElementById('f-date').value,
-    time: document.getElementById('f-time').value,
+    date:   document.getElementById('f-date').value,
+    time:   document.getElementById('f-time').value,
     method: document.getElementById('f-method').value
   };
   try {
     const res = await fetch(`/api/students/${editPin}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type':'application/json', 'x-auth-token': authToken },
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -321,13 +368,12 @@ async function savePayment() {
     if (idx !== -1) students[idx] = updated;
     document.getElementById('modal').style.display = 'none';
     editPin = null;
-    renderTable();
-    loadStats();
-    setSyncStatus('live', 'Saved ✓');
+    renderTable(); loadStats();
+    setSyncStatus('live','Saved ✓');
     showError('');
   } catch (e) {
     showError('Could not save: ' + e.message);
-    setSyncStatus('error', 'Save failed');
+    setSyncStatus('error','Save failed');
     btn.disabled = false; btn.textContent = 'Save Payment';
   }
 }
@@ -337,44 +383,43 @@ async function unpay(pin) {
   try {
     const res = await fetch(`/api/students/${pin}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ paid: false, amount: '', date: '', time: '', method: 'UPI' })
+      headers: { 'Content-Type':'application/json', 'x-auth-token': authToken },
+      body: JSON.stringify({ paid:false, amount:'', date:'', time:'', method:'UPI' })
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const updated = await res.json();
     const idx = students.findIndex(s => s.pin === pin);
     if (idx !== -1) students[idx] = updated;
     renderTable(); loadStats();
-    setSyncStatus('live', 'Cleared ✓');
+    setSyncStatus('live','Cleared ✓');
   } catch (e) {
     showError('Could not clear: ' + e.message);
-    setSyncStatus('error', 'Error');
+    setSyncStatus('error','Error');
   }
 }
 
 function exportPDF() {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
   doc.setFontSize(13); doc.setFont('helvetica','bold');
   doc.text('Government Polytechnic, Wanaparthy', 14, 16);
   doc.setFontSize(10); doc.setFont('helvetica','normal');
   doc.text('English — Fee Payment Checklist · CS Batch 2025', 14, 22);
-  const paid = students.filter(s=>s.paid);
-  const total = paid.reduce((a,s)=>a+(parseFloat(s.amount)||0),0);
+  const paid  = students.filter(s => s.paid);
+  const total = paid.reduce((a,s) => a+(parseFloat(s.amount)||0), 0);
   doc.text(`Paid: ${paid.length} / ${students.length}   Total: Rs.${total.toLocaleString('en-IN')}   Date: ${new Date().toLocaleDateString('en-IN')}`, 14, 28);
   doc.autoTable({
     startY: 33,
     head: [['#','PIN','Name','Status','Amount','Method','Date','Time']],
-    body: students.map(s=>[s.sno,s.pin,s.name,s.paid?'Paid':'Pending',s.paid?'Rs.'+s.amount:'',s.paid?s.method:'',s.date||'',s.time||'']),
-    styles: { fontSize: 8, cellPadding: 2 },
-    headStyles: { fillColor: [102,126,234], textColor: 255, fontStyle: 'bold' },
-    alternateRowStyles: { fillColor: [245,247,250] },
-    columnStyles: { 0:{cellWidth:8},1:{cellWidth:28},2:{cellWidth:48},3:{cellWidth:16},4:{cellWidth:18},5:{cellWidth:14},6:{cellWidth:20},7:{cellWidth:14} }
+    body: students.map(s => [s.sno, s.pin, s.name, s.paid?'Paid':'Pending', s.paid?'Rs.'+s.amount:'', s.paid?s.method:'', s.date||'', s.time||'']),
+    styles:{ fontSize:8, cellPadding:2 },
+    headStyles:{ fillColor:[102,126,234], textColor:255, fontStyle:'bold' },
+    alternateRowStyles:{ fillColor:[245,247,250] },
+    columnStyles:{ 0:{cellWidth:8},1:{cellWidth:28},2:{cellWidth:48},3:{cellWidth:16},4:{cellWidth:18},5:{cellWidth:14},6:{cellWidth:20},7:{cellWidth:14} }
   });
   doc.save('fee_checklist.pdf');
 }
 
-loadStudents();
 setInterval(loadStudents, 30000);
 </script>
 </body>
