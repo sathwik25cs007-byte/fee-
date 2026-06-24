@@ -97,7 +97,7 @@ const STUDENTS_MASTER = [
   [65, '25007-CS-066', 'NALLAVALA AJAY'],
 ];
 
-// ✅ Pre-filled payments from the fee_checklist.pdf (29 paid)
+// ✅ Pre-filled payments — 39 paid (from fee_checklist__1_.pdf dated 24/6/2026)
 const DEFAULT_PAYMENTS = {
   '25007-CS-001': { paid: true,  amount: '300', date: '2026-06-23', time: '09:06', method: 'Cash' },
   '25007-CS-002': { paid: true,  amount: '300', date: '2026-06-23', time: '10:42', method: 'UPI'  },
@@ -134,39 +134,39 @@ const DEFAULT_PAYMENTS = {
   '25007-CS-034': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-035': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-036': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-037': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-038': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-037': { paid: true,  amount: '300', date: '2026-06-24', time: '08:02', method: 'UPI'  },
+  '25007-CS-038': { paid: true,  amount: '300', date: '2026-06-24', time: '08:01', method: 'UPI'  },
   '25007-CS-039': { paid: true,  amount: '300', date: '2026-06-21', time: '11:03', method: 'UPI'  },
   '25007-CS-040': { paid: true,  amount: '300', date: '2026-06-23', time: '07:29', method: 'UPI'  },
   '25007-CS-041': { paid: true,  amount: '300', date: '2026-06-24', time: '07:35', method: 'UPI'  },
   '25007-CS-042': { paid: true,  amount: '300', date: '2026-06-23', time: '07:26', method: 'UPI'  },
-  '25007-CS-043': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-043': { paid: true,  amount: '300', date: '2026-06-24', time: '07:53', method: 'UPI'  },
   '25007-CS-044': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-045': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-046': { paid: true,  amount: '300', date: '2026-06-23', time: '18:20', method: 'UPI'  },
-  '25007-CS-047': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-047': { paid: true,  amount: '300', date: '2026-06-23', time: '22:03', method: 'UPI'  },
   '25007-CS-048': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-049': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-049': { paid: true,  amount: '300', date: '2026-06-23', time: '16:42', method: 'UPI'  },
   '25007-CS-050': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-051': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-052': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-051': { paid: true,  amount: '300', date: '2026-06-23', time: '20:01', method: 'UPI'  },
+  '25007-CS-052': { paid: true,  amount: '300', date: '2026-06-23', time: '03:28', method: 'UPI'  },
   '25007-CS-053': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-054': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-055': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-056': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-057': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-058': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-059': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-058': { paid: true,  amount: '300', date: '2026-06-23', time: '21:35', method: 'UPI'  },
+  '25007-CS-059': { paid: true,  amount: '300', date: '2026-06-23', time: '18:24', method: 'UPI'  },
   '25007-CS-060': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-061': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-062': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-063': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
-  '25007-CS-064': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
+  '25007-CS-064': { paid: true,  amount: '300', date: '2026-06-23', time: '21:58', method: 'UPI'  },
   '25007-CS-065': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
   '25007-CS-066': { paid: false, amount: '',    date: '',           time: '',      method: 'UPI'  },
 };
 
-// Load saved data; if file doesn't exist yet, seed with DEFAULT_PAYMENTS
+// Load saved data; if file doesn't exist yet, seed with DEFAULT_PAYMENTS; if file doesn't exist yet, seed with DEFAULT_PAYMENTS
 let paymentMap = {};
 try {
   if (fs.existsSync(DB_PATH)) {
