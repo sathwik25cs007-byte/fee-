@@ -6,9 +6,25 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// On Render: data saved to /var/data (Persistent Disk). Locally: ./data
-const DATA_DIR = process.env.RENDER ? '/var/data' : path.join(__dirname, 'data');
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+// Try /var/data (Render Persistent Disk), fall back to /tmp, then local ./data
+function resolveDataDir() {
+  const candidates = ['/var/data', '/tmp', path.join(__dirname, 'data')];
+  for (const dir of candidates) {
+    try {
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      // Test write access
+      const testFile = path.join(dir, '.write_test');
+      fs.writeFileSync(testFile, 'ok');
+      fs.unlinkSync(testFile);
+      console.log(`✅ Using data directory: ${dir}`);
+      return dir;
+    } catch (e) {
+      console.warn(`⚠️  Cannot use ${dir}: ${e.message}`);
+    }
+  }
+  throw new Error('No writable directory found');
+}
+const DATA_DIR = resolveDataDir();
 const DB_PATH = path.join(DATA_DIR, 'fee_checklist.json');
 
 const STUDENTS_MASTER = [
