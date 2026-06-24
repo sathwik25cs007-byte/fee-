@@ -1,0 +1,15 @@
+{
+  "name": "fee-checklist",
+  "version": "1.0.0",
+  "description": "GP Wanaparthy – Fee Payment Checklist",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
