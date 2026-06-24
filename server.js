@@ -4,6 +4,8 @@ const fs = require('fs');
 
 const app = express();
 app.use(express.json());
+// Serve from root AND public/ — works wherever index.html is placed
+app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Try /var/data (Render Persistent Disk), fall back to /tmp, then local ./data
@@ -136,7 +138,13 @@ app.get('/api/stats', (req, res) => {
 });
 
 // Serve frontend
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+// Serve index.html from root or public/
+app.get('*', (req, res) => {
+  const root = path.join(__dirname, 'index.html');
+  const pub = path.join(__dirname, 'public', 'index.html');
+  const file = fs.existsSync(root) ? root : pub;
+  res.sendFile(file);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
